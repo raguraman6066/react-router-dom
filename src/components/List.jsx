@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Atom } from "react-loading-indicators";
+import useFetch from "./custom-hook/UseFetch";
 const List = () => {
-  let [products, setProducts] = useState([]);
+  let { products, error, isLoading } = useFetch(
+    "http://localhost:4000/products"
+  );
+  /*let [products, setProducts] = useState([]);
   let [error, setError] = useState("");
   let [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
@@ -24,7 +27,7 @@ const List = () => {
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  }, []);*/
   if (isLoading) {
     return (
       <div>
