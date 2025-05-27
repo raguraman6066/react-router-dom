@@ -6,12 +6,12 @@ const Login = () => {
   console.log(newObj);
   let navigate = useNavigate();
   function handleNavigate() {
-    navigate("/signup");
+    navigate("/products");
   }
   return (
     <>
       <div>Login - {newObj.username}</div>
-      <button onClick={handleNavigate}>signup</button>
+      <button onClick={handleNavigate}>Products</button>
     </>
   );
 };
