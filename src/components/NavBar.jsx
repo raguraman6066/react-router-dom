@@ -3,9 +3,11 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { MdAddShoppingCart } from "react-icons/md";
 
 function NavBar() {
+  let navigate = useNavigate();
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
@@ -24,12 +26,24 @@ function NavBar() {
             </Nav.Link>{" "}
             <Nav.Link as={Link} to={"/newproduct"}>
               NewProduct
+            </Nav.Link>
+            <Nav.Link as={Link} to={"/counterapp"}>
+              CounterApp
             </Nav.Link>{" "}
             <Nav.Link as={Link} to={"/login/guest"}>
               Login
             </Nav.Link>
           </Nav>
           <Form className="d-flex">
+            <Button
+              variant="contained"
+              color="warning"
+              onClick={() => {
+                navigate("/wishlist");
+              }}
+            >
+              <MdAddShoppingCart />
+            </Button>
             <Form.Control
               type="search"
               placeholder="Search"

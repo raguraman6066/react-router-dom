@@ -8,7 +8,10 @@ import { MdDelete } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
-const List = () => {
+import { useDispatch, useSelector } from "react-redux";
+import { cartActions } from "../store/cartslice";
+let { addItem, removeItem } = cartActions;
+const ProductList = () => {
   let navigate = useNavigate();
   let { products, error, isLoading, setProducts } = useFetch(
     "http://localhost:4000/products"
@@ -37,6 +40,29 @@ const List = () => {
       setProducts(newProductList);
     });
   };
+  let dispatch = useDispatch();
+  let cartProducts = useSelector((state) => {
+    return state.cart;
+  });
+  function addItemToCart(product) {
+    let checkProduct = cartProducts.some(
+      (cartProduct) => cartProduct.id == product.id
+    );
+    if (checkProduct) {
+      Swal.fire({
+        title: "Oops!",
+        text: "Product already added!",
+        icon: "error",
+      });
+    } else {
+      dispatch(addItem(product));
+      Swal.fire({
+        title: "Success",
+        text: "Product added successfully",
+        icon: "success",
+      });
+    }
+  }
   /*let [products, setProducts] = useState([]);
   let [error, setError] = useState("");
   let [isLoading, setIsLoading] = useState(true);
@@ -72,9 +98,13 @@ const List = () => {
     <div>
       <article>
         <span>To create new product</span>
-        <button onClick={()=>{
-          navigate('/newproduct')
-        }}>Click Me!</button>
+        <button
+          onClick={() => {
+            navigate("/newproduct");
+          }}
+        >
+          Click Me!
+        </button>
       </article>
       <h1>Product List</h1>
       <section className="products">
@@ -101,7 +131,7 @@ const List = () => {
                 alignItems: "center",
               }}
             >
-              <Button variant="primary">
+              <Button variant="primary" onClick={() => addItemToCart(product)}>
                 <MdAddShoppingCart />
               </Button>
               <Button
@@ -124,4 +154,4 @@ const List = () => {
   );
 };
 
-export default List;
+export default ProductList;
