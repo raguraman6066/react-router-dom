@@ -22,6 +22,9 @@ function NavBar() {
             <Nav.Link as={Link} to={"/products"}>
               Products
             </Nav.Link>{" "}
+            <Nav.Link as={Link} to={"/newproduct"}>
+              NewProduct
+            </Nav.Link>{" "}
             <Nav.Link as={Link} to={"/login/guest"}>
               Login
             </Nav.Link>

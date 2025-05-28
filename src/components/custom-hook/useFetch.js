@@ -24,7 +24,7 @@ function useFetch(URL) {
     };
     fetchApi();
   }, []);
-  return { products, error, isLoading };
+  return { products, error, isLoading, setProducts };
 }
 
 export default useFetch;
