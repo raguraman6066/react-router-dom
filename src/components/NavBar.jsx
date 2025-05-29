@@ -30,8 +30,8 @@ function NavBar() {
             <Nav.Link as={Link} to={"/counterapp"}>
               CounterApp
             </Nav.Link>{" "}
-            <Nav.Link as={Link} to={"/login/guest"}>
-              Login
+            <Nav.Link as={Link} to={"/signup/guest"}>
+              SignUp
             </Nav.Link>
           </Nav>
           <Form className="d-flex">

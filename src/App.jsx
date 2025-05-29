@@ -1,6 +1,6 @@
 import "./App.css";
 import Home from "./components/Home";
-import Login from "./components/Login";
+import Login from "./components/SignUp";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Products from "./components/Products";
@@ -12,10 +12,11 @@ import UpdateProduct from "./components/UpdateProduct";
 import CounterApp from "./components/CounterApp";
 import WishList from "./components/WishList";
 import ProductList from "./components/ProductList";
+import SignUp from "./components/SignUp";
 if (!localStorage.getItem("cart")) {
   localStorage.setItem("cart", JSON.stringify([]));
 }
-localStorage.setItem("cart", JSON.stringify([]));
+
 // localStorage.setItem("cart", JSON.stringify([{ id: 1 }, { id: 2 }]));
 // let dataFromWeb = JSON.parse(localStorage.getItem("cart"));
 // console.log(dataFromWeb.length);
@@ -28,7 +29,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login/:username" element={<Login />} />
+          <Route path="/signup/:username" element={<SignUp />} />
           <Route path="/newproduct" element={<NewProduct />} />
           <Route path="/counterapp" element={<CounterApp />} />
           <Route path="/update/:id" element={<UpdateProduct />} />
